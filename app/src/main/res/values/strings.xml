@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">HomeManagement</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="open_drawer">open</string>
+    <string name="close_drawer">close</string>
+    <string name="home">Home</string>
+    <string name="img_home">img_home</string>
+    <string name="img_menu">img_menu</string>
+    <string name="rooms">Rooms</string>
+    <string name="tasks">Tasks</string>
+    <string name="shop_list">Shop List</string>
+    <string name="components">Components</string>
+    <string name="profile">Profile</string>
+    <string name="about">About</string>
 </resources>
