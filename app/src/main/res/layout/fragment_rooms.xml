@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_rooms"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".RoomsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:padding="18dp">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/room"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/rooms"
+            android:foregroundTint="#000000"
+            android:src="@drawable/more"
+            app:backgroundTint="#AEABA8"
+            app:fabCustomSize="150dp"
+            app:fabSize="auto"
+            app:maxImageSize="60dp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/Room1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Room 1"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="6dp">
+
+            <!-- Add an ImageView or Icon to represent Room 1 -->
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+</FrameLayout>

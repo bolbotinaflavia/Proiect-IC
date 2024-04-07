@@ -1,42 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="15dp">
 
     <!-- TextView -->
+
+    <!-- ImageView -->
+    <!-- ImageButton -->
+
     <TextView
         android:id="@+id/NavigationHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:background="@android:color/white"
-        android:layout_marginTop="24dp"
         android:text="@string/home"
         android:textColor="#474087"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- ImageView -->
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="62dp"
-        android:layout_height="62dp"
-        android:layout_marginEnd="100dp"
-        android:contentDescription="@string/img_home"
-
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/home" />
+        tools:layout_editor_absoluteX="161dp" />
 
-    <!-- ImageButton -->
-    <ImageButton
-        android:id="@+id/imageView2"
-        android:layout_width="65dp"
-        android:layout_height="64dp"
-        android:contentDescription="@string/img_menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

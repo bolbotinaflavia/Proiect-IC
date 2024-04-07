@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout2"
+        android:title="@string/homemanagement"
+        android:logo="@drawable/home_foreground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:background="@color/colorPrimary"
-            />
+            android:background="@color/white"
+            app:layout_anchor="@+id/toolbar"
+            app:layout_anchorGravity="center">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="260dp"
+                android:layout_marginEnd="0dp"
+                app:srcCompat="@drawable/home_foreground" />
+
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

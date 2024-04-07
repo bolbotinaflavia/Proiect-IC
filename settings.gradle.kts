@@ -18,7 +18,12 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+    }
+}
 rootProject.name = "HomeManagement"
 include(":app")
  

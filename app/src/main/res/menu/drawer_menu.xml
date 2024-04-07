@@ -4,6 +4,12 @@
     android:background="@color/white">
 
     <group >
+<!--        <item-->
+<!--            android:id="@+id/Home"-->
+<!--            android:title="Home"-->
+<!--            android:icon="@drawable/home_foreground"-->
+<!--            app:showAsAction="always"-->
+<!--            />-->
         <item
             android:id="@+id/Rooms"
             android:title="@string/rooms" />
