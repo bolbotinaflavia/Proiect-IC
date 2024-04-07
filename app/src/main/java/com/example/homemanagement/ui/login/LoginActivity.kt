@@ -1,5 +1,6 @@
 package com.example.homemanagement.ui.login
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import androidx.lifecycle.Observer
@@ -12,32 +13,24 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.homemanagement.MainActivity
 import com.example.homemanagement.databinding.ActivityLogin2Binding
 
 import com.example.homemanagement.R
+import com.example.homemanagement.RegisterFragment
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLogin2Binding
 
+    @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_login)
-        Handler().postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish() // Opțional, pentru a închide activitatea LoginActivity după navigare
-        }, 10000)
-
-        //val intent = Intent(this, MainActivity::class.java)
-        //startActivity(intent)
-        //setContentView(R.layout.activity_main)
-        //finish()
-
         binding = ActivityLogin2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -105,9 +98,12 @@ class LoginActivity : AppCompatActivity() {
                 false
             }
 
-            login.setOnClickListener {
+            binding.login.setOnClickListener {
                 loading.visibility = View.VISIBLE
                 loginViewModel.login(username.text.toString(), password.text.toString())
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
     }
@@ -128,6 +124,8 @@ class LoginActivity : AppCompatActivity() {
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }
+
+    fun onTextViewClicked(view: View) {}
 }
 
 /**
