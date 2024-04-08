@@ -1,0 +1,118 @@
+[{
+  "_id": {
+    "$oid": "6613ce29d32bdc27c516c9b5"
+  },
+  "name": "Traian Basescu",
+  "email": "traian.base@gmail.com",
+  "hashedPassword": "13678ba23e9d"
+},
+{
+  "_id": {
+    "$oid": "6613ce29d32bdc27c516c9b6"
+  },
+  "name": "Sergiu Nimara",
+  "email": "sergiu.nimara@upt.ro",
+  "hashedPassword": "7ae34dd29"
+},
+{
+  "_id": {
+    "$oid": "6613ce29d32bdc27c516c9b7"
+  },
+  "name": "Salavat Mihai",
+  "email": "mihai.salivat@yahoo.com",
+  "hashedPassword": "9ad1f0023e5c"
+},
+{
+  "_id": {
+    "$oid": "6613ce29d32bdc27c516c9b8"
+  },
+  "name": "Fuego",
+  "email": "paulciprian.surugiu@student.upt.ro",
+  "hashedPassword": "f21e0715aa"
+},
+{
+  "_id": {
+    "$oid": "6613ce29d32bdc27c516c9b9"
+  },
+  "name": "Popa Mircea",
+  "email": "popa.mircea@upt.ro",
+  "hashedPassword": "1829aae23bab"
+},
+{
+  "_id": {
+    "$oid": "6613ce29d32bdc27c516c9ba"
+  },
+  "name": "Tzanca Uraganul",
+  "email": "tzanca.burjkhalifa@gmail.com",
+  "hashedPassword": "bbe129af001d"
+},
+{
+  "_id": {
+    "$oid": "661464e067df9fa586d2e5be"
+  },
+  "name": "John Doe",
+  "email": "john@example.com",
+  "hashedPassword": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+  "rooms": [
+    {
+      "id": 1,
+      "name": "Kitchen",
+      "photo": null,
+      "description": null,
+      "tasks": [
+        {
+          "id": 1,
+          "name": "Make food",
+          "date": null,
+          "room": null,
+          "description": null
+        },
+        {
+          "id": 2,
+          "name": "Clean up",
+          "date": null,
+          "room": null,
+          "description": null
+        },
+        {
+          "id": 3,
+          "name": "Wash dishes",
+          "date": null,
+          "room": null,
+          "description": null
+        }
+      ],
+      "components": null
+    },
+    {
+      "id": 2,
+      "name": "Kitchen2",
+      "photo": null,
+      "description": null,
+      "tasks": [
+        {
+          "id": 1,
+          "name": "Make food",
+          "date": null,
+          "room": null,
+          "description": null
+        },
+        {
+          "id": 2,
+          "name": "Clean up",
+          "date": null,
+          "room": null,
+          "description": null
+        },
+        {
+          "id": 3,
+          "name": "Wash dishes",
+          "date": null,
+          "room": null,
+          "description": null
+        }
+      ],
+      "components": null
+    }
+  ]
+}]
