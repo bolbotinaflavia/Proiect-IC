@@ -70,20 +70,11 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email/Username</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Login</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <string name="go_to_register">"Don't have an account? Sign Up"</string>
-    <string name="forget_password">"Forgot password?"</string>
     <string name="homemanagement">HomeManagement</string>
-    <string name="reg_username">Username</string>
-    <string name="reg_email">Email</string>
-    <string name="reg_conf_password">Confirm Password</string>
-    <string name="reg_button">Register</string>
+    <string name="already_registered_login">Already registered? Login</string>
+    <string name="signup">SIGNUP</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="not_yet_registered_signup">Not yet registered? SignUp</string>
+    <string name="login">LOGIN</string>
 </resources>

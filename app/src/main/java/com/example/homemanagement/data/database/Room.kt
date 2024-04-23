@@ -1,3 +1,5 @@
+//import com.google.gson.Gson
+
 data class Room(
     val id: Int,
     var name: String,
@@ -5,4 +7,9 @@ data class Room(
     var description: String?,
     val tasks: MutableList<Task> = mutableListOf(),
     var components: MutableList<Component>? = mutableListOf()
-)
+) {
+   /* fun toJson(): String? {
+        val gson = Gson()
+        return gson.toJson(this)
+    }*/
+}
