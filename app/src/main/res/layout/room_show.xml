@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?android:attr/colorBackground">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <TextView
         android:id="@+id/rooms_text_view"
         android:layout_width="wrap_content"
@@ -67,4 +69,5 @@
         android:text="edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+</RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
