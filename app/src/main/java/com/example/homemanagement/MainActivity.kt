@@ -9,8 +9,6 @@ import android.widget.TabHost
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.example.homemanagement.Components_fragments.ComponentFragment
-import com.example.homemanagement.Room_fragments.RoomsFragment
 import com.example.homemanagement.ui.TasksFragment
 
 
@@ -80,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                 // Code to be executed when the add button is clicked
                 Toast.makeText(this, "Component Item is Pressed", Toast.LENGTH_SHORT).show()
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.tab_host,ComponentFragment())
+                    .replace(R.id.tab_host, ComponentFragment())
                     .addToBackStack(null)
                     .commit()
                 return true

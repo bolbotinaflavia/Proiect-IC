@@ -1,4 +1,4 @@
-package com.example.homemanagement.Room_fragments
+package com.example.homemanagement
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import com.example.homemanagement.R
 
 class RoomCreateFragment : Fragment() {
     private lateinit var submitButton: Button

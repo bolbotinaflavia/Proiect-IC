@@ -1,4 +1,4 @@
-package com.example.homemanagement.Room_fragments
+package com.example.homemanagement
 
 import android.content.Context
 import android.view.LayoutInflater

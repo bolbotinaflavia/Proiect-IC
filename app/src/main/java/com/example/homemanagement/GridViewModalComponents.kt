@@ -1,4 +1,4 @@
-package com.example.homemanagement.Components_fragments
+package com.example.homemanagement
 
 data class GridViewModal(
     val componentName: String,

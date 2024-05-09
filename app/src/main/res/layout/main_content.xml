@@ -61,7 +61,7 @@
 
                     <androidx.fragment.app.FragmentContainerView
                         android:id="@+id/fragment_container_view_1"
-                        android:name="com.example.homemanagement.Room_fragments.RoomsFragment"
+                        android:name="com.example.homemanagement.RoomsFragment"
                         android:layout_width="match_parent"
                         android:layout_height="585dp" />
                 </LinearLayout>

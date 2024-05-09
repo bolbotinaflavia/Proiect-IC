@@ -1,21 +1,19 @@
-package com.example.homemanagement.Components_fragments
+package com.example.homemanagement
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.example.homemanagement.R
 import com.example.homemanagement.data.database.AppDatabase
 import com.example.homemanagement.data.database.component.Component
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-class ComponentFragment: Fragment(), ComponentCreateFragment.ComponentCreationListener  {
+class ComponentFragment: Fragment(), ComponentCreateFragment.ComponentCreationListener {
     private lateinit var db: AppDatabase
     private lateinit var componentAdapter: ComponentAdapter
     override fun onCreateView(

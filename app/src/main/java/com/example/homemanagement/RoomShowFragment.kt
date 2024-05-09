@@ -1,24 +1,14 @@
-package com.example.homemanagement.Room_fragments
+package com.example.homemanagement
 
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridView
-import android.widget.ImageView
 import android.widget.TabHost
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
-import com.example.homemanagement.Components_fragments.ComponentFragment
-import com.example.homemanagement.R
 import com.example.homemanagement.ui.TasksFragment
-import com.example.homemanagement.data.database.room.Camera
-import com.example.homemanagement.Room_fragments.RoomAdapter
-import com.example.homemanagement.data.database.AppDatabase
-import kotlinx.coroutines.launch
 
 class RoomShowFragment : Fragment() {
     private var position: Int = -1

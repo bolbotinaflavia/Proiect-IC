@@ -1,4 +1,4 @@
-package com.example.homemanagement.Room_fragments
+package com.example.homemanagement
 
 // on below line we are creating a modal class.
 data class GridViewModal(
