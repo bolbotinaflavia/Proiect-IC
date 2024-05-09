@@ -15,19 +15,24 @@ class DBHelper(private val context:Context):
         private const val COLUMN_ID = "id"
         private const val COLUMN_USERNAME = "username"
         private const val COLUMN_PASSWORD = "password"
+
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
+
         val createTableQuery = ("CREATE TABLE $TABLE_NAME (" +
                 "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "$COLUMN_USERNAME TEXT, " +
                 "$COLUMN_PASSWORD TEXT)")
-        db?.execSQL(createTableQuery);
+        db?.execSQL(createTableQuery)
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+
         val dropTableQuery = "DROP TABLE IF EXISTS $TABLE_NAME"
         db?.execSQL(dropTableQuery)
+
         onCreate(db)
     }
 

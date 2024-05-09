@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    kotlin("kapt")
 }
 
 android {
@@ -58,6 +59,14 @@ dependencies {
    // implementation ("com.android.support:design:28.0.0")
     //implementation("com.android.support:appcompat-v7:28.0.0")
     //implementation("com.android.support:support-v4:28.0.0")
+    implementation("androidx.room:room-runtime:2.4.0")
+    kapt( "androidx.room:room-compiler:2.4.0")
+    implementation("com.google.code.gson:gson:2.8.8")
+
+    // Kotlin coroutine dependencies
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -73,6 +82,8 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.2.0-alpha13")
     // To use constraintlayout in compose
     implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha13")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)

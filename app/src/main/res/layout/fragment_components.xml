@@ -3,23 +3,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_rooms"
+    android:id="@+id/fragment_components"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RoomsFragment"
+    tools:context=".ComponentFragment"
     android:background="?android:attr/colorBackground">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <!-- FloatingActionButton to create a new room -->
+        <!-- FloatingActionButton to create a new room -->
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/createroom"
+            android:id="@+id/createcomponent"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_margin="16dp"
-            android:contentDescription="@string/rooms"
+            android:contentDescription="@string/components"
             android:foregroundTint="#000000"
             android:src="@drawable/more"
             app:backgroundTint="#AEABA8"
@@ -28,17 +28,17 @@
             app:maxImageSize="60dp" />
 
         <GridView
-        android:layout_below="@id/createroom"
-        android:layout_margin="16dp"
-        android:id="@+id/roomGridView"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:horizontalSpacing="6dp"
-        android:numColumns="2"
-        android:verticalSpacing="6dp"
-        android:gravity="center"
-        android:scrollbars="vertical"
-        android:layout_marginBottom="10dp"
-        />
+            android:layout_below="@id/createcomponent"
+            android:layout_margin="16dp"
+            android:id="@+id/componentGridView"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:horizontalSpacing="6dp"
+            android:numColumns="2"
+            android:verticalSpacing="6dp"
+            android:gravity="center"
+            android:scrollbars="vertical"
+            android:layout_marginBottom="10dp"
+            />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

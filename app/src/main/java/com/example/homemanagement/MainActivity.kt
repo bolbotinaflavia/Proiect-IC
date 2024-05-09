@@ -2,21 +2,20 @@
 package com.example.homemanagement
 
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.TabHost
-import androidx.appcompat.app.ActionBarDrawerToggle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.widget.Toolbar
+import com.example.homemanagement.Components_fragments.ComponentFragment
+import com.example.homemanagement.Room_fragments.RoomsFragment
 import com.example.homemanagement.ui.TasksFragment
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var drawerLayout: DrawerLayout
-    private lateinit var drawerToggle: ActionBarDrawerToggle
     private lateinit var toolbar: Toolbar
-    private lateinit var tab_host: TabHost
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,21 +24,6 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        // Set up the drawer layout and toggle
-        drawerLayout = findViewById(R.id.drawer)
-        drawerToggle = ActionBarDrawerToggle(
-            this,
-            drawerLayout,
-            toolbar,
-            R.string.open_drawer,
-            R.string.close_drawer
-        )
-        drawerLayout.addDrawerListener(drawerToggle)
-        drawerToggle.syncState()
-
-        // Enable the home button and set up navigation button
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeButtonEnabled(true)
 
         // Set up the tabs
         val tabHost: TabHost = findViewById(R.id.tab_host)
@@ -66,15 +50,62 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.tab_two, TasksFragment())
             .commit()
+
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.drawer_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(drawerToggle.onOptionsItemSelected(item))
-            return true
+        when (item.itemId) {
+            R.id.btn_home->{
+                supportFragmentManager.popBackStack()
+                return true
+            }
+            R.id.RoomsMenu -> {
+                Log.d("MainActivity", "Rooms menu item clicked")
+                // Attempt to add RoomsFragment to fragment container view
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.tab_host, RoomsFragment())
+                    .addToBackStack(null)
+                    .commit()
+                return true
+            }
+            R.id.TasksMenu -> {
+                // Code to be executed when the add button is clicked
+                Toast.makeText(this, "Task Item is Pressed", Toast.LENGTH_SHORT).show()
+                return true
+            }
+            R.id.ComponentsMenu -> {
+                // Code to be executed when the add button is clicked
+                Toast.makeText(this, "Component Item is Pressed", Toast.LENGTH_SHORT).show()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.tab_host,ComponentFragment())
+                    .addToBackStack(null)
+                    .commit()
+                return true
+            }
+            R.id.AboutMenu -> {
+                // Code to be executed when the add button is clicked
+                Toast.makeText(this, "About Item is Pressed", Toast.LENGTH_SHORT).show()
+                return true
+            }
+            R.id.ProfileMenu -> {
+                // Code to be executed when the add button is clicked
+                Toast.makeText(this, "Profile Item is Pressed", Toast.LENGTH_SHORT).show()
+                return true
+            }
+            R.id.ShopListMenu -> {
+                // Code to be executed when the add button is clicked
+                Toast.makeText(this, "ShopList Item is Pressed", Toast.LENGTH_SHORT).show()
+                return true
+            }
+        }
         return super.onOptionsItemSelected(item)
     }
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
-        drawerToggle.syncState()
+//        drawerToggle.syncState()
     }
 
 }

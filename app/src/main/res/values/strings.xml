@@ -77,4 +77,6 @@
     <string name="username">Username</string>
     <string name="not_yet_registered_signup">Not yet registered? SignUp</string>
     <string name="login">LOGIN</string>
+    <string name="title_activity_rooms">RoomsActivity</string>
+    <string name="title_activity_new_room">NewRoomActivity</string>
 </resources>

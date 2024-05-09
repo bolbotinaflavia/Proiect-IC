@@ -4,29 +4,29 @@
     android:background="@color/white">
 
     <group >
-<!--        <item-->
-<!--            android:id="@+id/Home"-->
-<!--            android:title="Home"-->
-<!--            android:icon="@drawable/home_foreground"-->
-<!--            app:showAsAction="always"-->
-<!--            />-->
         <item
-            android:id="@+id/Rooms"
+            android:id="@+id/btn_home"
+            android:title="Home"
+            android:icon="@drawable/home_foreground"
+            app:showAsAction="always"
+            />
+        <item
+            android:id="@+id/RoomsMenu"
             android:title="@string/rooms" />
         <item
-            android:id="@+id/Tasks"
+            android:id="@+id/TasksMenu"
             android:title="@string/tasks" />
         <item
-            android:id="@+id/ShopList"
+            android:id="@+id/ShopListMenu"
             android:title="@string/shop_list" />
         <item
-            android:id="@+id/Components"
+            android:id="@+id/ComponentsMenu"
             android:title="@string/components" />
         <item
-            android:id="@+id/Profile"
+            android:id="@+id/ProfileMenu"
             android:title="@string/profile" />
         <item
-            android:id="@+id/About"
+            android:id="@+id/AboutMenu"
             android:title="@string/about" />
     </group>
 </menu>
