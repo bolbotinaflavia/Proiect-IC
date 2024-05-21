@@ -2,6 +2,7 @@ package com.example.homemanagement
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
@@ -54,5 +55,12 @@ class DBHelper(private val context:Context):
         val userExists = cursor.count > 0
         cursor.close()
         return userExists
+    }
+
+    fun getUserData(username: String): Cursor {
+        val db = readableDatabase
+        val selection = "$COLUMN_USERNAME = ?"
+        val selectionArgs = arrayOf(username)
+        return db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null)
     }
 }

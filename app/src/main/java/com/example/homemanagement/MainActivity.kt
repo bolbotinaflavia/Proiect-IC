@@ -90,7 +90,14 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.ProfileMenu -> {
                 // Code to be executed when the add button is clicked
-                Toast.makeText(this, "Profile Item is Pressed", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "Profile Item is Pressed", Toast.LENGTH_SHORT).show()
+                //return true
+                Log.d("MainActivity", "Profile menu item clicked")
+                // Attempt to add RoomsFragment to fragment container view
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.tab_host, ProfileFragment())
+                    .addToBackStack(null)
+                    .commit()
                 return true
             }
             R.id.ShopListMenu -> {

@@ -1,5 +1,6 @@
 package com.example.homemanagement
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -31,12 +32,19 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+
     }
 
     private fun loginDatabase(username:String, password:String){
         val userExists = databaseHelper.readUser(username, password)
         if(userExists){
             Toast.makeText(this,"Login Successful", Toast.LENGTH_SHORT).show()
+            val sharedPref = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+            with(sharedPref.edit()) {
+                putString("user_email", username)
+                apply()
+            }
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
@@ -45,5 +53,6 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Login failed",Toast.LENGTH_SHORT).show()
         }
     }
+
 
 }
