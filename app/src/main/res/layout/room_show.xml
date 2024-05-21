@@ -1,73 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground">
-<RelativeLayout
+    android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/rooms_text_view"
+
+    <!-- Navigation view -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/rooms"
-        tools:layout_editor_absoluteX="183dp"
-        tools:layout_editor_absoluteY="27dp" />
-
-    <TabHost
-        android:id="@+id/tab_host_room"
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
-        app:layout_constraintTop_toBottomOf="@id/rooms_text_view"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_gravity="start"
+        android:background="@android:color/white"
 
-        <LinearLayout
+        app:menu="@menu/drawer_menu"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <androidx.appcompat.widget.Toolbar
+
+            android:id="@+id/toolbar_room"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="?android:attr/colorBackground">
+            android:layout_height="64dp"
 
-            <TabWidget
-                android:id="@android:id/tabs"
-                android:layout_width="match_parent"
+            app:layout_anchorGravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            tools:layout_editor_absoluteX="0dp">
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:id="@+id/header_room"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_room">
+
+
+            <ImageButton
+                android:id="@+id/button_edit_room"
+                android:layout_width="59dp"
+                android:layout_height="62dp"
+                android:layout_alignEnd="@+id/rooms_text_view"
+                android:layout_marginEnd="96dp"
+                android:background="#00FFFFFF"
+                android:scaleType="centerInside"
+                android:src="@drawable/edit"
+                android:text="edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/rooms_text_view"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/colorBackground"/>
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="20dp"
+                android:text="Camera"
+                android:textSize="16dp" />
+        </RelativeLayout>
 
-            <FrameLayout
-                android:id="@android:id/tabcontent"
+        <TabHost
+            android:id="@+id/tab_host_room"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/header_room"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?android:attr/colorBackground">
+                android:background="?android:attr/colorBackground"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/tab_one_room"
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/colorBackground" />
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical" />
+                    android:background="?android:attr/colorBackground">
 
-                <LinearLayout
-                    android:id="@+id/tab_two_room"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical" />
-            </FrameLayout>
-        </LinearLayout>
-    </TabHost>
+                    <LinearLayout
+                        android:id="@+id/tab_one_room"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/tab_two_room"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical" />
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
 
 
-    <ImageButton
-        android:id="@+id/button_edit_room"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="#00FFFFFF"
-        android:scaleType="centerInside"
-        android:src="@drawable/edit"
-        android:text="edit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</RelativeLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

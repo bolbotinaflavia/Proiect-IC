@@ -50,7 +50,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TabWidget
@@ -66,14 +66,14 @@
                     <LinearLayout
                         android:id="@+id/tab_one"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="668dp"
                         android:orientation="vertical">
 
                         <androidx.fragment.app.FragmentContainerView
                             android:id="@+id/fragment_container_view_1"
                             android:name="com.example.homemanagement.RoomsFragment"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="668dp" />
                     </LinearLayout>
 
                     <LinearLayout

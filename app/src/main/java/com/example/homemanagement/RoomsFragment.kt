@@ -14,15 +14,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
-class RoomsFragment : Fragment(), RoomCreateFragment.RoomCreationListener,
-    RoomShowFragment.RoomShowListener {
+import android.content.Intent
+class RoomsFragment : Fragment(), RoomCreateFragment.RoomCreationListener{
     private lateinit var db: AppDatabase
-//    private lateinit var roomAdapter: RoomAdapter
-    private var _roomAdapter: RoomAdapter? = null
-    val roomAdapter: RoomAdapter
-        get() = _roomAdapter!!
-    override fun onCreateView(
+private var _roomAdapter: RoomAdapter? = null
+val roomAdapter: RoomAdapter
+    get() = _roomAdapter!!
+
+override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -73,19 +72,11 @@ class RoomsFragment : Fragment(), RoomCreateFragment.RoomCreationListener,
 
     }
     private fun showRoom(position: Int) {
-        val roomShowFragment = RoomShowFragment()
-        roomShowFragment.arguments = Bundle().apply {
-            putInt("position", position)
+        val selectedRoom = roomAdapter.getItem(position) // Get the selected room
+        val intent = Intent(requireContext(), RoomShowActivity::class.java).apply {
+            putExtra("roomId", selectedRoom.id)
         }
-        roomShowFragment.setRoomShowListener(this) // Set listener
-//        childFragmentManager.popBackStack()
-
-        //de
-        childFragmentManager.beginTransaction()
-
-            .replace(R.id.fragment_rooms,roomShowFragment)
-            .addToBackStack(null)
-            .commit()
+        startActivity(intent)
     }
     private fun showRoomCreationForm() {
         val roomCreateFragment = RoomCreateFragment()
@@ -97,17 +88,17 @@ class RoomsFragment : Fragment(), RoomCreateFragment.RoomCreationListener,
             .commit()
     }
 
-    override fun onRoomCreated(name: String, description: String) {
+    override fun onRoomCreated(name: String, description: String,photo:String) {
         lifecycleScope.launch {
-            saveRoomToDatabase(name, description)
+            saveRoomToDatabase(name, description,photo)
         }
     }
    override fun onRoomCancel(){
        childFragmentManager.popBackStack()
     }
 
-    private suspend fun saveRoomToDatabase(name: String, description: String) {
-        val room = Camera(name = name, description = description)
+    private suspend fun saveRoomToDatabase(name: String, description: String,photo:String) {
+        val room = Camera(name = name, description = description, photo = photo)
         val database = AppDatabase.getInstance(requireContext())
         withContext(Dispatchers.IO) {
             database.roomDao().insertRoom(room)
