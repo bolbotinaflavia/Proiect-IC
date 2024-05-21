@@ -81,7 +81,7 @@ class RoomEditFragment :Fragment() {
         fun onRoomDelete()
     }
 
-    fun setRoomEditListener(listener: RoomEditListener) {
+    fun setRoomEditListener(listener: RoomShowActivity) {
         this.listener = listener
     }
     private val PICK_IMAGE_REQUEST = 1
@@ -100,4 +100,5 @@ class RoomEditFragment :Fragment() {
             selectPhotoButton.setText(selectedImageUri.toString())
         }
     }
+
 }

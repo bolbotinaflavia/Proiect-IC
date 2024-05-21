@@ -7,16 +7,18 @@ import com.example.homemanagement.data.database.component.ComponentDao
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.homemanagement.Converters
 import com.example.homemanagement.data.database.room.Camera
 import com.example.homemanagement.data.database.room.RoomDao
 
-@Database(entities = [Camera::class,Component::class], version = 2, exportSchema = false)
+@Database(entities = [Camera::class,Component::class,Element::class], version = 6, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun roomDao(): RoomDao
     abstract fun componentDao():ComponentDao
-//    abstract fun ElementDao():ElementDao
+     abstract fun elementDao():ElementDao
 //    abstract fun TaskDao():TaskDao
 
     companion object {
@@ -34,7 +36,5 @@ abstract class AppDatabase : RoomDatabase() {
                 instance
             }
         }
-
     }
-
 }

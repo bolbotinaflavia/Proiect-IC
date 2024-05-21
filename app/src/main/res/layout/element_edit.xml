@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/new_component"
+    android:id="@+id/edit_element"
     android:layout_width="match_parent"
     android:layout_height="668dp"
     android:background="?android:attr/colorBackground">
@@ -19,53 +18,39 @@
             android:text="Name" />
 
         <EditText
-            android:id="@+id/componentNameEditText"
+            android:id="@+id/elementNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter component name" />
+            android:hint="Enter room name" />
 
-        <!-- Photo -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Photo" />
-
-        <Button
-            android:id="@+id/selectcomponentPhotoButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Photo" />
-
-
-        <!-- Description -->
-
-
-        <!-- Tasks -->
-        <!-- You can add a list of tasks here if needed -->
-
-        <!-- Components -->
-        <!-- You can add a list of components here if needed -->
 
         <!-- Button to save -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <Button
-                android:id="@+id/submitButton_component"
+                android:id="@+id/editelementButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save" />
 
             <Button
-                android:id="@+id/cancelButton_component"
+                android:id="@+id/deleteelementButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="200dp"
-                android:text="Cancel"
+                android:layout_marginLeft="50dp"
+                android:text="Delete"
                 app:backgroundTint="#AC1E1E" />
+
+            <Button
+                android:id="@+id/cancelelementButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:text="Cancel"
+                app:backgroundTint="#8E7777" />
 
 
         </LinearLayout>
-
     </LinearLayout>
 </FrameLayout>

@@ -27,6 +27,7 @@ class RoomShowActivity : AppCompatActivity(),RoomEditFragment.RoomEditListener {
     private lateinit var db: AppDatabase
     private lateinit var room: Camera
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.room_show)
@@ -74,8 +75,14 @@ class RoomShowActivity : AppCompatActivity(),RoomEditFragment.RoomEditListener {
             spec.setIndicator("Tasks")
             tabHost.addTab(spec)
 
+            val componentFragment = ComponentFragment().apply {
+                arguments = Bundle().apply {
+                    putInt("roomId", roomId)
+                }
+            }
             supportFragmentManager.commit {
-                replace(R.id.tab_one_room, ComponentFragment())
+
+                replace(R.id.tab_one_room, componentFragment)
             }
 
             supportFragmentManager.commit {

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/new_component"
+    android:id="@+id/new_element"
     android:layout_width="match_parent"
     android:layout_height="668dp"
     android:background="?android:attr/colorBackground">
@@ -19,45 +19,22 @@
             android:text="Name" />
 
         <EditText
-            android:id="@+id/componentNameEditText"
+            android:id="@+id/elementNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter component name" />
 
-        <!-- Photo -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Photo" />
-
-        <Button
-            android:id="@+id/selectcomponentPhotoButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Photo" />
-
-
-        <!-- Description -->
-
-
-        <!-- Tasks -->
-        <!-- You can add a list of tasks here if needed -->
-
-        <!-- Components -->
-        <!-- You can add a list of components here if needed -->
-
-        <!-- Button to save -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <Button
-                android:id="@+id/submitButton_component"
+                android:id="@+id/submitButton_element"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save" />
 
             <Button
-                android:id="@+id/cancelButton_component"
+                android:id="@+id/cancelButton_element"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="200dp"

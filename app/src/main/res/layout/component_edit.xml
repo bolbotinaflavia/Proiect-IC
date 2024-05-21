@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/new_component"
+    android:id="@+id/edit_component"
     android:layout_width="match_parent"
     android:layout_height="668dp"
     android:background="?android:attr/colorBackground">
@@ -22,7 +21,7 @@
             android:id="@+id/componentNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter component name" />
+            android:hint="Enter room name" />
 
         <!-- Photo -->
         <TextView
@@ -36,10 +35,6 @@
             android:layout_height="wrap_content"
             android:text="Select Photo" />
 
-
-        <!-- Description -->
-
-
         <!-- Tasks -->
         <!-- You can add a list of tasks here if needed -->
 
@@ -51,21 +46,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <Button
-                android:id="@+id/submitButton_component"
+                android:id="@+id/editcomponentButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save" />
 
             <Button
-                android:id="@+id/cancelButton_component"
+                android:id="@+id/deletecomponentButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="200dp"
-                android:text="Cancel"
+                android:layout_marginLeft="50dp"
+                android:text="Delete"
                 app:backgroundTint="#AC1E1E" />
+
+            <Button
+                android:id="@+id/cancelcomponentButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:text="Cancel"
+                app:backgroundTint="#8E7777" />
 
 
         </LinearLayout>
-
     </LinearLayout>
 </FrameLayout>

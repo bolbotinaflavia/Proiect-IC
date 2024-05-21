@@ -1,23 +1,28 @@
 package com.example.homemanagement
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.homemanagement.R
 import com.example.homemanagement.data.database.component.Component
+import java.io.InputStream
 
-class ComponentAdapter (private val context: Context, private var components: List<Component>) : BaseAdapter() {
+class ComponentAdapter (private val context: Context, private var components: List<Component>,private val onItemClick: (position: Int) -> Unit) : BaseAdapter() {
 
     override fun getCount(): Int {
         return components.size
     }
 
-    override fun getItem(position: Int): Any {
+    override fun getItem(position: Int): Component {
         return components[position]
     }
 
@@ -37,8 +42,25 @@ class ComponentAdapter (private val context: Context, private var components: Li
 
         nameTextView.text = component.name
         // Load room photo using a library like Picasso or Glide
-        Glide.with(context).load(component.photo).into(photoImageView)
+        if (!component.photo.isNullOrEmpty()) {
 
+            try {
+                val imageUri = Uri.parse(component.photo)
+                val inputStream: InputStream? = context.contentResolver.openInputStream(imageUri)
+                val bitmap: Bitmap = BitmapFactory.decodeStream(inputStream)
+                photoImageView.setImageBitmap(bitmap)
+                inputStream?.close()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                photoImageView.setImageResource(R.drawable.home_foreground) // Fallback to default image in case of an error
+            }
+        } else {
+            photoImageView.setImageResource(R.drawable.home)  // Placeholder image
+        }
+        val btnComponentShow: LinearLayout = view.findViewById(R.id.btn_component_show)
+        btnComponentShow.setOnClickListener {
+            onItemClick(position)
+        }
         return view
     }
 

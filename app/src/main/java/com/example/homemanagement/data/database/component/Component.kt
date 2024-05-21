@@ -13,8 +13,7 @@ data class Component(
     @PrimaryKey(autoGenerate = true) val id: Int? = null,
     var name: String,
     var photo: String? = null,
-    //val roomId: Int?=null,
-    // val camera: Camera,
+    val roomId: Int?=null,
     @TypeConverters(Converters::class)
     val elements: List<Element>? = null
 )
