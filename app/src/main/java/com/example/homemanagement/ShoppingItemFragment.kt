@@ -20,9 +20,12 @@ class ShoppingItemFragment : Fragment(), ShoppingItemAdapter.OnDeleteClickListen
 
     private lateinit var db: AppDatabase
     private lateinit var shoppingItemAdapter: ShoppingItemAdapter
+    private lateinit var addButton: FloatingActionButton
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_shopping_item, container, false)
+
+        addButton = view.findViewById(R.id.fabAddItem)
 
         lifecycleScope.launch {
             db = AppDatabase.getInstance(requireContext())
@@ -69,6 +72,7 @@ class ShoppingItemFragment : Fragment(), ShoppingItemAdapter.OnDeleteClickListen
     }
 
     private fun showShoppingItemCreationForm() {
+        addButton.visibility = View.GONE
         val shoppingItemCreateFragment = ShoppingItemCreateFragment()
         shoppingItemCreateFragment.setShoppingItemCreationListener(this)
         childFragmentManager.beginTransaction()
@@ -78,12 +82,14 @@ class ShoppingItemFragment : Fragment(), ShoppingItemAdapter.OnDeleteClickListen
     }
 
     override fun onShoppingItemCreated(name: String) {
+        addButton.visibility = View.VISIBLE
         lifecycleScope.launch {
             saveShoppingItemToDatabase(name)
         }
     }
 
     override fun onShoppingItemCancel() {
+        addButton.visibility = View.VISIBLE
         childFragmentManager.popBackStack()
     }
 
