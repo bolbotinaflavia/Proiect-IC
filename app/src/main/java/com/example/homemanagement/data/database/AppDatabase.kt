@@ -12,13 +12,16 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.homemanagement.Converters
 import com.example.homemanagement.data.database.room.Camera
 import com.example.homemanagement.data.database.room.RoomDao
+import com.example.homemanagement.data.database.shoppingItem.ShoppingItem
+import com.example.homemanagement.data.database.shoppingItem.ShoppingItemDao
 
-@Database(entities = [Camera::class,Component::class,Element::class], version = 6, exportSchema = false)
+@Database(entities = [Camera::class,Component::class,Element::class,ShoppingItem::class], version = 7, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun roomDao(): RoomDao
+    abstract fun roomDao():RoomDao
     abstract fun componentDao():ComponentDao
      abstract fun elementDao():ElementDao
+    abstract fun shoppingItemDao():ShoppingItemDao
 //    abstract fun TaskDao():TaskDao
 
     companion object {
