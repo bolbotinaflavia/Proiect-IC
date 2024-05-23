@@ -3,11 +3,13 @@ package com.example.homemanagement
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
 import com.example.homemanagement.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -33,7 +35,17 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
+        val animatedGifImageView: ImageView = findViewById(R.id.animatedGifImageView)
 
+        // Load the GIF dynamically using Glide
+        Glide.with(this)
+            .load(R.drawable.pingu)
+            .into(animatedGifImageView)
+
+        // Set up click listener on the ImageView (optional)
+        animatedGifImageView.setOnClickListener {
+            // Add any additional actions you want to perform when the ImageView is clicked
+        }
     }
 
     private fun loginDatabase(username:String, password:String){

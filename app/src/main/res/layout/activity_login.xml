@@ -8,11 +8,23 @@
     android:padding="@dimen/activity_vertical_margin"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:id="@+id/animatedGifImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/loginUsername"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp" />
+
+
     <EditText
         android:id="@+id/loginUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="272dp"
+        android:layout_marginTop="400dp"
         android:background="@drawable/edittxet_border"
         android:padding="12dp"
         android:hint="@string/username"

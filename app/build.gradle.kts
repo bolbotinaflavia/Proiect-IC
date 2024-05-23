@@ -105,6 +105,7 @@ dependencies {
     // Kotlin
     implementation("androidx.fragment:fragment-ktx:$fragment_version")
     implementation ("nl.dionsegijn:konfetti-xml:2.0.4")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
     //implementation("com.android.support.constraint:constraint-layout:2.0.4.")
 
 }
