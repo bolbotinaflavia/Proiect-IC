@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.homemanagement.R
@@ -14,6 +15,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import nl.dionsegijn.konfetti.core.Party
+import nl.dionsegijn.konfetti.core.Position
+import nl.dionsegijn.konfetti.core.emitter.Emitter
+import nl.dionsegijn.konfetti.xml.KonfettiView
+import java.util.concurrent.TimeUnit
+
 
 class ShoppingItemFragment : Fragment(), ShoppingItemAdapter.OnDeleteClickListener,
     ShoppingItemCreateFragment.ShoppingItemCreationListener{
@@ -21,11 +28,26 @@ class ShoppingItemFragment : Fragment(), ShoppingItemAdapter.OnDeleteClickListen
     private lateinit var db: AppDatabase
     private lateinit var shoppingItemAdapter: ShoppingItemAdapter
     private lateinit var addButton: FloatingActionButton
+    private lateinit var confettiView: KonfettiView
+    private lateinit var party: Party
+    private lateinit var confettiText: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_shopping_item, container, false)
 
         addButton = view.findViewById(R.id.fabAddItem)
+        confettiView = view.findViewById(R.id.confettiView) // Initialize the confetti animation view
+        confettiText = view.findViewById(R.id.confettiText)
+
+        party = Party(
+            speed = 15f,
+            maxSpeed = 45f,
+            damping = 0.9f,
+            spread = 360,
+            colors = listOf(0x33dc11, 0xf646ff, 0xfce18a, 0xff726d, 0xf4306d, 0xb48def),
+            emitter = Emitter(duration = 750, TimeUnit.MILLISECONDS).max(250),
+            position = Position.Relative(0.5, 0.3)
+        )
 
         lifecycleScope.launch {
             db = AppDatabase.getInstance(requireContext())
@@ -52,6 +74,7 @@ class ShoppingItemFragment : Fragment(), ShoppingItemAdapter.OnDeleteClickListen
     override fun onDeleteClick(item: ShoppingItem) {
         lifecycleScope.launch {
             deleteShoppingItemFromDatabase(item)
+            showConfettiEffect()
         }
     }
 
@@ -61,6 +84,18 @@ class ShoppingItemFragment : Fragment(), ShoppingItemAdapter.OnDeleteClickListen
         }
         loadShoppingItemsFromDatabase()
     }
+
+    private fun showConfettiEffect() {
+        confettiText.visibility = View.VISIBLE
+        confettiView.visibility = View.VISIBLE
+        confettiView.start(party)
+        confettiView.postDelayed({
+            confettiView.visibility = View.GONE
+            confettiText.visibility = View.GONE
+        }, 750) // Show for 3 seconds
+    }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

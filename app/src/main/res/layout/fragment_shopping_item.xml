@@ -6,6 +6,24 @@
     android:orientation="vertical"
     android:background="?android:attr/colorBackground">
 
+    <nl.dionsegijn.konfetti.xml.KonfettiView
+        android:id="@+id/confettiView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/colorBackground"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/confettiText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="YAY!"
+        android:textSize="24sp"
+        android:textColor="@android:color/holo_purple"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:gravity="center" />
+
     <!-- ListView to display shopping items -->
     <ListView
         android:id="@+id/shoppingListView"

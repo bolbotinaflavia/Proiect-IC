@@ -53,6 +53,7 @@ android {
 }
 
 
+
 dependencies {
 
     //implementation ("com.github.ismaeldivita:chip-navigation-bar:1.4.0")
@@ -62,7 +63,6 @@ dependencies {
     implementation("androidx.room:room-runtime:2.4.0")
     kapt( "androidx.room:room-compiler:2.4.0")
     implementation("com.google.code.gson:gson:2.8.8")
-
     // Kotlin coroutine dependencies
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
@@ -83,7 +83,7 @@ dependencies {
     // To use constraintlayout in compose
     implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha13")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
-    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    kapt ("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
@@ -104,15 +104,10 @@ dependencies {
     implementation("androidx.fragment:fragment:$fragment_version")
     // Kotlin
     implementation("androidx.fragment:fragment-ktx:$fragment_version")
-
+    implementation ("nl.dionsegijn:konfetti-xml:2.0.4")
     //implementation("com.android.support.constraint:constraint-layout:2.0.4.")
 
 }
-/*dependencies {
-
-    
-}*/
-
 
 
 
