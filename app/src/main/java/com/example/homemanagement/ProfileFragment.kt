@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 
 class ProfileFragment : Fragment() {
 
@@ -58,6 +60,11 @@ class ProfileFragment : Fragment() {
             // edit button
         }
 
+        val animatedGifImageView: ImageView = view.findViewById(R.id.sayHi)
 
+        // Load the GIF dynamically using Glide
+        Glide.with(this)
+            .load(R.drawable.say_hi_to_user)
+            .into(animatedGifImageView)
     }
 }
