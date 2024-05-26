@@ -1,6 +1,7 @@
 // MainActivity.kt
 package com.example.homemanagement
 
+import AboutFragment
 import ShoppingItemFragment
 import android.os.Bundle
 import android.util.Log
@@ -87,6 +88,10 @@ class MainActivity : AppCompatActivity() {
             R.id.AboutMenu -> {
                 // Code to be executed when the add button is clicked
                 Toast.makeText(this, "About Item is Pressed", Toast.LENGTH_SHORT).show()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.tab_host, AboutFragment())
+                    .addToBackStack(null)
+                    .commit()
                 return true
             }
             R.id.ProfileMenu -> {
@@ -103,7 +108,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.ShopListMenu -> {
                 // Code to be executed when the add button is clicked
-                Toast.makeText(this, "ShopList Item is Pressed", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "ShopList Item is Pressed", Toast.LENGTH_SHORT).show()
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.tab_host, ShoppingItemFragment())
                     .addToBackStack(null)
