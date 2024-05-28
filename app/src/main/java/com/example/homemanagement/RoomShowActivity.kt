@@ -1,5 +1,7 @@
 package com.example.homemanagement
 
+import AboutFragment
+import ShoppingItemFragment
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,9 +11,12 @@ import android.widget.ImageButton
 import android.widget.TabHost
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.commit
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.homemanagement.data.database.AppDatabase
 import com.example.homemanagement.data.database.room.Camera
@@ -19,6 +24,7 @@ import com.example.homemanagement.ui.TasksFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.example.homemanagement.LoginActivity as LoginActivity
 
 class RoomShowActivity : AppCompatActivity(),RoomEditFragment.RoomEditListener {
     private lateinit var toolbar: Toolbar
@@ -26,7 +32,8 @@ class RoomShowActivity : AppCompatActivity(),RoomEditFragment.RoomEditListener {
     private lateinit var roomAdapter: RoomAdapter
     private lateinit var db: AppDatabase
     private lateinit var room: Camera
-
+    private  var userId: Int? =null
+    private val viewModel: UserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +45,7 @@ class RoomShowActivity : AppCompatActivity(),RoomEditFragment.RoomEditListener {
         setSupportActionBar(toolbar)
 
         roomId = intent.getIntExtra("roomId", -1)
+        userId=intent.getIntExtra("userId",-1)
 
         lifecycleScope.launch {
             db = AppDatabase.getInstance(this@RoomShowActivity)
@@ -63,6 +71,7 @@ class RoomShowActivity : AppCompatActivity(),RoomEditFragment.RoomEditListener {
             val tabHost: TabHost = findViewById(R.id.tab_host_room)
             tabHost.setup()
 
+
             // Create a tab for Components
             var spec: TabHost.TabSpec = tabHost.newTabSpec("Components")
             spec.setContent(R.id.tab_one_room)
@@ -75,15 +84,19 @@ class RoomShowActivity : AppCompatActivity(),RoomEditFragment.RoomEditListener {
             spec.setIndicator("Tasks")
             tabHost.addTab(spec)
 
+
             val componentFragment = ComponentFragment().apply {
                 arguments = Bundle().apply {
-                    putInt("roomId", roomId)
+                    //val userId= viewModel.userId
+                    userId?.let { putInt("userId", it) }
+                    roomId?.let{putInt("roomId",it)}
+                    Log.d("RoomShowActivity", "userId: $userId")
                 }
             }
-            supportFragmentManager.commit {
-
-                replace(R.id.tab_one_room, componentFragment)
-            }
+            // Replace the fragment in the "Rooms" tab content area
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.tab_one_room, componentFragment)
+                .commit()
 
             supportFragmentManager.commit {
                 replace(R.id.tab_two_room, TasksFragment())
@@ -98,16 +111,30 @@ class RoomShowActivity : AppCompatActivity(),RoomEditFragment.RoomEditListener {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+
             R.id.btn_home->{
-                val intent = Intent(this, MainActivity::class.java)
+
+                val intent = Intent(this, MainActivity::class.java).apply{
+                    putExtra("userId",userId)
+                }
                 startActivity(intent)
                 return true
             }
             R.id.RoomsMenu -> {
+
                // Log.d("MainActivity", "Rooms menu item clicked")
                 // Attempt to add RoomsFragment to fragment container view
+                //val userId=viewModel.userId
+                val roomsFragment = RoomsFragment().apply {
+                    arguments = Bundle().apply {
+                        userId?.let {
+                            putInt("userId", it)
+                            //Log.d("MainActivity-userId", "userId: $it")
+                        }
+                    }
+                }
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.header_room, RoomsFragment())
+                    .replace(R.id.header_room, roomsFragment)
                     .addToBackStack(null)
                     .commit()
                 return true
@@ -118,27 +145,45 @@ class RoomShowActivity : AppCompatActivity(),RoomEditFragment.RoomEditListener {
                 return true
             }
             R.id.ComponentsMenu -> {
+                //val userId=viewModel.userId
+                val componentFragment = ComponentFragment().apply {
+                    arguments = Bundle().apply {
+                        userId?.let {
+                            putInt("userId", it)
+                            Log.d("ShowRoom-to-fragment-userId", "userId: $it")
+                        }
+                        putInt("roomId",-1)
+                    }
+                }
                 // Code to be executed when the add button is clicked
-                Toast.makeText(this, "Component Item is Pressed", Toast.LENGTH_SHORT).show()
+               // Toast.makeText(this, "Component Item is Pressed", Toast.LENGTH_SHORT).show()
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.header_room, ComponentFragment())
+                    .replace(R.id.header_room, componentFragment)
                     .addToBackStack(null)
                     .commit()
                 return true
             }
             R.id.AboutMenu -> {
-                // Code to be executed when the add button is clicked
                 Toast.makeText(this, "About Item is Pressed", Toast.LENGTH_SHORT).show()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.header_room, AboutFragment())
+                    .addToBackStack(null)
+                    .commit()
                 return true
             }
             R.id.ProfileMenu -> {
-                // Code to be executed when the add button is clicked
-                Toast.makeText(this, "Profile Item is Pressed", Toast.LENGTH_SHORT).show()
+                Log.d("MainActivity", "Profile menu item clicked")
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.header_room, ProfileFragment())
+                    .addToBackStack(null)
+                    .commit()
                 return true
             }
             R.id.ShopListMenu -> {
-                // Code to be executed when the add button is clicked
-                Toast.makeText(this, "ShopList Item is Pressed", Toast.LENGTH_SHORT).show()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.header_room, ShoppingItemFragment())
+                    .addToBackStack(null)
+                    .commit()
                 return true
             }
         }
@@ -205,6 +250,7 @@ class RoomShowActivity : AppCompatActivity(),RoomEditFragment.RoomEditListener {
         }
         Toast.makeText(this, "Room deleted successfully", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, MainActivity::class.java)
+
         startActivity(intent)
     }
 

@@ -58,7 +58,7 @@ class RoomAdapter(private val context: Context, private var rooms: List<Camera>,
                 photoImageView.setImageResource(R.drawable.home_foreground) // Fallback to default image in case of an error
             }
         } else {
-            photoImageView.setImageResource(R.drawable.home)  // Placeholder image
+            photoImageView.setImageResource(R.drawable.home_foreground)  // Placeholder image
         }
 
         val btnRoomShow: LinearLayout = view.findViewById(R.id.btn_room_show)

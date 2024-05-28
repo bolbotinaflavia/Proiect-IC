@@ -12,6 +12,7 @@ class ElementAdapter(
     private val elements: List<Element>,
     private val onEditClick: (Element) -> Unit,
     private val onAddToShopListClick: (Element) -> Unit
+
 ) : RecyclerView.Adapter<ElementAdapter.ElementViewHolder>() {
 
     class ElementViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

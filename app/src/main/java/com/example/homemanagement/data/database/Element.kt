@@ -3,9 +3,11 @@ package com.example.homemanagement.data.database
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.example.homemanagement.data.database.component.Component
 
-@Entity(tableName = "elements")
+@Entity(tableName = "elements", foreignKeys = [ForeignKey(entity = Component::class, parentColumns = ["id"], childColumns = ["componentId"], onDelete = ForeignKey.CASCADE)])
 data class Element(
     @PrimaryKey(autoGenerate = true) val id: Int,
     var name: String,
@@ -14,7 +16,8 @@ data class Element(
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString() ?: "",
-        parcel.readInt()
+        parcel.readInt(),
+
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.example.homemanagement.data.database.Element
+import com.example.homemanagement.data.database.room.Camera
 
 @Dao
 interface ElementDao {
@@ -22,4 +23,5 @@ interface ElementDao {
 
     @Query("DELETE FROM elements WHERE id = :elementId")
     fun deleteElement(elementId: Int)
+
 }
