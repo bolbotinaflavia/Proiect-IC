@@ -11,7 +11,6 @@ import android.widget.TabHost
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.example.homemanagement.ui.TasksFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -73,7 +72,12 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.TasksMenu -> {
                 // Code to be executed when the add button is clicked
-                Toast.makeText(this, "Task Item is Pressed", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "Task Item is Pressed", Toast.LENGTH_SHORT).show()
+                Log.d("MainActivity", "Tasks menu item clicked")
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.tab_host, TasksFragment())
+                    .addToBackStack(null)
+                    .commit()
                 return true
             }
             R.id.ComponentsMenu -> {

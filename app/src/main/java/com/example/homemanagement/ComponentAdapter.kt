@@ -55,7 +55,7 @@ class ComponentAdapter (private val context: Context, private var components: Li
                 photoImageView.setImageResource(R.drawable.home_foreground) // Fallback to default image in case of an error
             }
         } else {
-            photoImageView.setImageResource(R.drawable.home)  // Placeholder image
+            photoImageView.setImageResource(R.drawable.home_foreground)  // Placeholder image
         }
         val btnComponentShow: LinearLayout = view.findViewById(R.id.btn_component_show)
         btnComponentShow.setOnClickListener {

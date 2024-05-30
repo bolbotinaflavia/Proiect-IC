@@ -31,10 +31,10 @@ class ProfileFragment : Fragment() {
         dbHelper = DBHelper(requireContext())
 
         val welcomeMessage: TextView = view.findViewById(R.id.welcomeMessage)
-        val usernameText: TextView = view.findViewById(R.id.usernameText)
+        //val usernameText: TextView = view.findViewById(R.id.usernameText)
         val emailText: TextView = view.findViewById(R.id.emailText)
         val logoutButton: Button = view.findViewById(R.id.logoutButton)
-        val editButton: ImageButton = view.findViewById(R.id.editButton)
+        //val editButton: ImageButton = view.findViewById(R.id.editButton)
 
         val sharedPref = activity?.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
         val userEmail = sharedPref?.getString("user_email", "user@example.com")
@@ -45,7 +45,7 @@ class ProfileFragment : Fragment() {
             val userName = cursor.getString(cursor.getColumnIndexOrThrow("username"))
 
             welcomeMessage.text = getString(R.string.hello_username, userName)
-            usernameText.text = userName
+            //usernameText.text = userName
             emailText.text = userEmail
         }
         cursor.close()
@@ -55,11 +55,6 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
             activity?.finish()
         }
-
-        editButton.setOnClickListener {
-            // edit button
-        }
-
         val animatedGifImageView: ImageView = view.findViewById(R.id.sayHi)
 
         // Load the GIF dynamically using Glide

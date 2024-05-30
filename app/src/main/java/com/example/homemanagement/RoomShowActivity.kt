@@ -15,7 +15,6 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import com.example.homemanagement.data.database.AppDatabase
 import com.example.homemanagement.data.database.room.Camera
-import com.example.homemanagement.ui.TasksFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

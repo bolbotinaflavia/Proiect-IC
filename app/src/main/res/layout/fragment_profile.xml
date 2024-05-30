@@ -27,7 +27,6 @@
         android:text="@string/hello_username"
         android:textSize="24sp"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/usernameLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -35,45 +34,21 @@
         android:layout_marginTop="232dp" />
 
     <TextView
-        android:id="@+id/usernameLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/username_profile"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/usernameText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcomeMessage" />
-
-    <TextView
-        android:id="@+id/usernameText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/user_example_com"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/emailLabel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/usernameLabel" />
-
-    <TextView
         android:id="@+id/emailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/email"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/usernameText"
+        app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
         android:layout_marginBottom="4dp" />
 
     <TextView
         android:id="@+id/emailText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:text="@string/email_example_com"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,16 +72,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emailText" />
 
-    <ImageButton
-        android:id="@+id/editButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_margin="16dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/edit"
-        android:src="@drawable/edit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_gravity="end|bottom" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

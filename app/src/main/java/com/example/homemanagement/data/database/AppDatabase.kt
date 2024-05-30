@@ -10,19 +10,20 @@ import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.homemanagement.Converters
+import com.example.homemanagement.DateConverter
 import com.example.homemanagement.data.database.room.Camera
 import com.example.homemanagement.data.database.room.RoomDao
 import com.example.homemanagement.data.database.shoppingItem.ShoppingItem
 import com.example.homemanagement.data.database.shoppingItem.ShoppingItemDao
 
-@Database(entities = [Camera::class,Component::class,Element::class,ShoppingItem::class], version = 7, exportSchema = false)
-@TypeConverters(Converters::class)
+@Database(entities = [Camera::class,Component::class,Element::class,ShoppingItem::class,Task::class], version = 11, exportSchema = false)
+@TypeConverters(Converters::class, DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun roomDao():RoomDao
     abstract fun componentDao():ComponentDao
      abstract fun elementDao():ElementDao
     abstract fun shoppingItemDao():ShoppingItemDao
-//    abstract fun TaskDao():TaskDao
+    abstract fun taskDao():TaskDao
 
     companion object {
         @Volatile

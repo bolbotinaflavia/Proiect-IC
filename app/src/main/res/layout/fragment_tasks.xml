@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/fragment_container"
+    tools:context=".TasksFragment"
+    android:background="?android:attr/colorBackground">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <!-- New Task Button -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/New_Task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/edit"
+            android:contentDescription="New task" />
+
+        <!-- Filter Button -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/Filter_tasks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/filter"
+            android:contentDescription="Filter tasks" />
+
+    </LinearLayout>
+
+    <!-- RecyclerView for displaying tasks -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/taskRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:background="@android:color/white" />
+
+</LinearLayout>
