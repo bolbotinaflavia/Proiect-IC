@@ -2,10 +2,10 @@ package com.example.homemanagement
 
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +20,7 @@ class ComponentCreateFragment : Fragment() {
     private lateinit var listener: ComponentCreationListener // Add listener
     private var selectedImageUri: Uri? = null
     private var roomId: Int = 0
-
+    private var userId: Int? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,6 +28,7 @@ class ComponentCreateFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.new_component, container, false)
         roomId = arguments?.getInt("roomId") ?: 0
+        userId = arguments?.getInt("userId")?:0
 
         submitButton = view.findViewById(R.id.submitButton_component)
         componentNameEditText = view.findViewById(R.id.componentNameEditText)
@@ -39,7 +40,12 @@ class ComponentCreateFragment : Fragment() {
         submitButton.setOnClickListener {
             val componentName = componentNameEditText.text.toString()
             val componentPhoto=selectedImageUri?.toString() ?: ""
-            listener.onComponentCreated(componentName,componentPhoto,roomId) // Notify listener
+            Log.d("In-Create-Fragment", "userId: $userId, roomId: $roomId")
+            if (userId != null) {
+                listener.onComponentCreated(componentName, componentPhoto, roomId, userId!!)
+            } else {
+                Log.e("ComponentCreateFragment", "User ID is null")
+            }
         }
         val cancelButton: Button = view.findViewById(R.id.cancelButton_component)
         cancelButton.setOnClickListener {
@@ -50,7 +56,7 @@ class ComponentCreateFragment : Fragment() {
     }
 
     interface ComponentCreationListener {
-        fun onComponentCreated(name: String,photo:String,roomId: Int)
+        fun onComponentCreated(name: String, photo: String, roomId: Int,userId:Int)
         fun onComponentCancel()
     }
 

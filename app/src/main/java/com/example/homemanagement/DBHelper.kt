@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 
 
 class DBHelper(private val context:Context):
@@ -62,5 +63,21 @@ class DBHelper(private val context:Context):
         val selection = "$COLUMN_USERNAME = ?"
         val selectionArgs = arrayOf(username)
         return db.query(TABLE_NAME, null, selection, selectionArgs, null, null, null)
+    }
+    fun getUserId(username: String): Int {
+        val db = readableDatabase
+        val selection = "$COLUMN_USERNAME = ?"
+        val selectionArgs = arrayOf(username)
+        val cursor = db.query(TABLE_NAME, arrayOf(COLUMN_ID), selection, selectionArgs, null, null, null)
+
+        var userId = -1
+        if (cursor.moveToFirst()) {
+            userId = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
+        } else {
+            Log.d("DBHelper", "No user found with username: $username")
+        }
+        cursor.close()
+        Log.d("DBHelper", "Retrieved userId: $userId for username: $username")
+        return userId
     }
 }

@@ -19,7 +19,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
 
@@ -38,46 +38,44 @@
 
 
         </androidx.appcompat.widget.Toolbar>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/show_component"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_component">
 
-        <RelativeLayout
-            android:id="@+id/header_component"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:padding="16dp"
+
+<RelativeLayout
+    android:id="@+id/header_component"
+    android:layout_marginStart="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/button_edit_component"
+            android:layout_width="59dp"
+            android:layout_height="62dp"
+            android:layout_marginEnd="96dp"
+            android:background="#00FFFFFF"
+            android:scaleType="centerInside"
+            android:src="@drawable/edit"
+            android:text="edit"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_component">
+            app:layout_constraintTop_toTopOf="parent" />
 
-
-            <ImageButton
-                android:id="@+id/button_edit_component"
-                android:layout_width="59dp"
-                android:layout_height="62dp"
-                android:layout_alignEnd="@+id/components_text_view"
-                android:layout_marginEnd="96dp"
-                android:background="#00FFFFFF"
-                android:scaleType="centerInside"
-                android:src="@drawable/edit"
-                android:text="edit"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/components_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="120dp"
-                android:layout_marginTop="20dp"
-                android:text="Camera"
-                android:textSize="16dp" />
-        </RelativeLayout>
-
+        <TextView
+            android:id="@+id/components_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/button_edit_component"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="20dp"
+            android:text="Camera"
+            android:textSize="16dp" />
+</RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/elementRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/header_component"
             app:layout_constraintBottom_toTopOf="@+id/addElementButton"
             app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +92,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
 
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

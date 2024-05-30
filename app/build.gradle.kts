@@ -61,6 +61,7 @@ dependencies {
     //implementation("com.android.support:appcompat-v7:28.0.0")
     //implementation("com.android.support:support-v4:28.0.0")
     implementation("androidx.room:room-runtime:2.4.0")
+    implementation(libs.androidx.media3.common)
     kapt( "androidx.room:room-compiler:2.4.0")
     implementation("com.google.code.gson:gson:2.8.8")
     // Kotlin coroutine dependencies

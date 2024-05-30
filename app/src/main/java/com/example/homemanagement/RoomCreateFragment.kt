@@ -4,11 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 class RoomCreateFragment : Fragment() {
@@ -18,6 +20,7 @@ class RoomCreateFragment : Fragment() {
     private lateinit var selectPhotoButton: Button
     private lateinit var listener: RoomCreationListener // Add listener
     private var selectedImageUri: Uri? = null
+    private var userId: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +28,11 @@ class RoomCreateFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.new_room, container, false)
-
+        userId = arguments?.getInt("userId")
+        userId?.let {
+            Log.d("Room-Create-UserId", "userId: $userId")
+            //Toast.makeText(context, "UserId is transmitted", Toast.LENGTH_SHORT).show()
+        }
         submitButton = view.findViewById(R.id.submitButton)
         roomNameEditText = view.findViewById(R.id.roomNameEditText)
         roomDescriptionEditText = view.findViewById(R.id.roomDescriptionEditText)
@@ -38,7 +45,11 @@ class RoomCreateFragment : Fragment() {
             val roomName = roomNameEditText.text.toString()
             val roomDescription = roomDescriptionEditText.text.toString()
             val roomPhoto=selectedImageUri?.toString() ?: ""
-            listener.onRoomCreated(roomName, roomDescription,roomPhoto) // Notify listener
+           // val userId=userId
+
+            if (userId != null) {
+                listener.onRoomCreated(roomName, roomDescription,roomPhoto,userId!!)
+            } // Notify listener
         }
         val cancelButton: Button = view.findViewById(R.id.cancelButton)
         cancelButton.setOnClickListener {
@@ -48,7 +59,7 @@ class RoomCreateFragment : Fragment() {
         return view
     }
     interface RoomCreationListener {
-        fun onRoomCreated(name: String, description: String,photo:String)
+        fun onRoomCreated(name: String, description: String,photo:String,userId:Int)
         fun onRoomCancel()
     }
 

@@ -1,5 +1,7 @@
 package com.example.homemanagement
 
+import AboutFragment
+import ShoppingItemFragment
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,8 +11,10 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,11 +24,14 @@ import com.example.homemanagement.data.database.component.Component
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 
 class ComponentShowActivity: AppCompatActivity(), ComponentEditFragment.ComponentEditListener,ElementCreateFragment.ElementCreationListener,ElementEditFragment.ElementEditListener {
     private lateinit var toolbar: Toolbar
     private lateinit var db: AppDatabase
     private var componentId:Int=-1
+    private var userId:Int?=null
     private lateinit var component: Component
     private lateinit var elementAdapter: ElementAdapter
     private val elements = mutableListOf<Element>()
@@ -38,6 +45,7 @@ class ComponentShowActivity: AppCompatActivity(), ComponentEditFragment.Componen
         setSupportActionBar(toolbar)
 
         componentId = intent.getIntExtra("componentId", -1)
+        userId=intent.getIntExtra("userId",-1)
 
         lifecycleScope.launch {
             db = AppDatabase.getInstance(applicationContext)
@@ -61,7 +69,8 @@ class ComponentShowActivity: AppCompatActivity(), ComponentEditFragment.Componen
             }
             val recyclerView: RecyclerView = findViewById(R.id.elementRecyclerView)
             recyclerView.layoutManager = LinearLayoutManager(this@ComponentShowActivity)
-            elementAdapter = ElementAdapter(elements,
+            elementAdapter = ElementAdapter(
+                elements,
                 onEditClick = { element -> showEditElementForm(element) },
                 onAddToShopListClick = { element -> addToShopList(element) }
             )
@@ -185,15 +194,25 @@ class ComponentShowActivity: AppCompatActivity(), ComponentEditFragment.Componen
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.btn_home->{
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java).apply{
+                    putExtra("userId",userId)
+                }
                 startActivity(intent)
                 return true
             }
             R.id.RoomsMenu -> {
-                // Log.d("MainActivity", "components menu item clicked")
-                // Attempt to add componentsFragment to fragment container view
+                /// Log.d("MainActivity", "Rooms menu item clicked")
+                // Attempt to add RoomsFragment to fragment container view
+                val roomsFragment = RoomsFragment().apply {
+                    arguments = Bundle().apply {
+                        userId?.let {
+                            putInt("userId", it)
+                            //Log.d("MainActivity-userId", "userId: $it")
+                        }
+                    }
+                }
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.header_component, RoomsFragment())
+                    .replace(R.id.header_component, roomsFragment)
                     .addToBackStack(null)
                     .commit()
                 return true
@@ -204,27 +223,45 @@ class ComponentShowActivity: AppCompatActivity(), ComponentEditFragment.Componen
                 return true
             }
             R.id.ComponentsMenu -> {
+                val componentFragment = ComponentFragment().apply {
+                    arguments = Bundle().apply {
+                        userId?.let {
+                            putInt("userId", it)
+
+                            //Log.d("MainActivity-userId", "userId: $it")
+                        }
+                        putInt("roomId",-1)
+                    }
+                }
                 // Code to be executed when the add button is clicked
-                Toast.makeText(this, "Component Item is Pressed", Toast.LENGTH_SHORT).show()
+                // Toast.makeText(this, "Component Item is Pressed", Toast.LENGTH_SHORT).show()
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.header_component, ComponentFragment())
+                    .replace(R.id.show_component, componentFragment)
                     .addToBackStack(null)
                     .commit()
                 return true
             }
             R.id.AboutMenu -> {
-                // Code to be executed when the add button is clicked
                 Toast.makeText(this, "About Item is Pressed", Toast.LENGTH_SHORT).show()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.header_component, AboutFragment())
+                    .addToBackStack(null)
+                    .commit()
                 return true
             }
             R.id.ProfileMenu -> {
-                // Code to be executed when the add button is clicked
-                Toast.makeText(this, "Profile Item is Pressed", Toast.LENGTH_SHORT).show()
+                Log.d("MainActivity", "Profile menu item clicked")
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.header_component, ProfileFragment())
+                    .addToBackStack(null)
+                    .commit()
                 return true
             }
             R.id.ShopListMenu -> {
-                // Code to be executed when the add button is clicked
-                Toast.makeText(this, "ShopList Item is Pressed", Toast.LENGTH_SHORT).show()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.header_component, ShoppingItemFragment())
+                    .addToBackStack(null)
+                    .commit()
                 return true
             }
         }

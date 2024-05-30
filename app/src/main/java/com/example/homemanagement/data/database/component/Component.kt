@@ -7,10 +7,13 @@ import com.example.homemanagement.Converters
 import com.example.homemanagement.data.database.Element
 import com.example.homemanagement.data.database.room.Camera
 
-//de pus la entity:( ,foreignKeys = [ForeignKey(entity = Camera::class, parentColumns = ["id"], childColumns = ["roomId"], onDelete = ForeignKey.CASCADE)])
-@Entity(tableName = "components")
+@Entity(tableName = "components",
+    foreignKeys = [ForeignKey(entity = Camera::class,
+        parentColumns = ["id"],
+        childColumns = ["roomId"], onDelete = ForeignKey.CASCADE)])
 data class Component(
     @PrimaryKey(autoGenerate = true) val id: Int? = null,
+    var userId:Int?=null,
     var name: String,
     var photo: String? = null,
     val roomId: Int?=null,

@@ -10,6 +10,7 @@ import com.example.homemanagement.data.database.Task
 @Entity(tableName = "cameras")
 data class Camera(
     @PrimaryKey(autoGenerate = true) val id: Int? = null, // Nullable id
+    val userId: Int?=null,
     var name: String,
     var photo: String? = null,
     var description: String?,

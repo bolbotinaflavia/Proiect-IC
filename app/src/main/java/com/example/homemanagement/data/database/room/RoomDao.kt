@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import com.example.homemanagement.data.database.component.Component
 import com.example.homemanagement.data.database.room.Camera
 
 @Dao
@@ -24,6 +25,7 @@ interface RoomDao {
     @Query("SELECT * FROM cameras WHERE id = :id")
     fun getCamera(id: Int): Camera?
 
-
+    @Query("SELECT * FROM cameras WHERE userId = :userId")
+    fun getRoomsByUser(userId: Int): List<Camera>
 }
 

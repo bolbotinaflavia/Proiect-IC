@@ -72,5 +72,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emailText" />
 
+<<<<<<< HEAD
 
+=======
+    <ImageButton
+        android:id="@+id/editButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/edit"
+        android:src="@drawable/edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_gravity="end|bottom" />
+>>>>>>> d14e45b07bd7b4d1ae8d2d9dfccfa1a6d45588c7
 </androidx.constraintlayout.widget.ConstraintLayout>
