@@ -14,6 +14,12 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
+import androidx.fragment.app.viewModels
+import com.example.homemanagement.TasksFragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
@@ -103,6 +109,7 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.TasksMenu -> {
+
                 // Code to be executed when the add button is clicked
                 //Toast.makeText(this, "Task Item is Pressed", Toast.LENGTH_SHORT).show()
                 Log.d("MainActivity", "Tasks menu item clicked")
@@ -110,7 +117,9 @@ class MainActivity : AppCompatActivity() {
                     .replace(R.id.tab_host, TasksFragment())
                     .addToBackStack(null)
                     .commit()
+
                 Toast.makeText(this, "Task Item is Pressed", Toast.LENGTH_SHORT).show()
+
                 return true
             }
             R.id.ComponentsMenu -> {

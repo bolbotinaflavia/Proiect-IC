@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.homemanagement.R
 import com.example.homemanagement.ShoppingItemCreateFragment
 import com.example.homemanagement.data.database.AppDatabase
+import com.example.homemanagement.data.database.Element
 import com.example.homemanagement.data.database.shoppingItem.ShoppingItem
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +24,7 @@ import java.util.concurrent.TimeUnit
 
 
 class ShoppingItemFragment : Fragment(), ShoppingItemAdapter.OnDeleteClickListener,
-    ShoppingItemCreateFragment.ShoppingItemCreationListener{
+    ShoppingItemCreateFragment.ShoppingItemCreationListener {
 
     private lateinit var db: AppDatabase
     private lateinit var shoppingItemAdapter: ShoppingItemAdapter
@@ -128,7 +129,7 @@ class ShoppingItemFragment : Fragment(), ShoppingItemAdapter.OnDeleteClickListen
         childFragmentManager.popBackStack()
     }
 
-    private suspend fun saveShoppingItemToDatabase(name: String) {
+    suspend fun saveShoppingItemToDatabase(name: String) {
         val shoppingItem = ShoppingItem(name = name)
         withContext(Dispatchers.IO) {
             db.shoppingItemDao().insertShoppingItem(shoppingItem)

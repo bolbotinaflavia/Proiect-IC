@@ -1,5 +1,6 @@
 package com.example.homemanagement
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -51,9 +52,10 @@ class ProfileFragment : Fragment() {
         cursor.close()
 
         logoutButton.setOnClickListener {
-            val intent = Intent(activity, LoginActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
+            //val intent = Intent(activity, LoginActivity::class.java)
+            //startActivity(intent)
+            //activity?.finish()
+            showLogoutConfirmationDialog();
         }
         val animatedGifImageView: ImageView = view.findViewById(R.id.sayHi)
 
@@ -61,5 +63,19 @@ class ProfileFragment : Fragment() {
         Glide.with(this)
             .load(R.drawable.say_hi_to_user)
             .into(animatedGifImageView)
+    }
+    private fun showLogoutConfirmationDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Log Out")
+            .setMessage("Are you sure you want to log out?")
+            .setPositiveButton("Yes") { dialog, which ->
+                val intent = Intent(activity, LoginActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            }
+            .setNegativeButton("No") { dialog, which ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }

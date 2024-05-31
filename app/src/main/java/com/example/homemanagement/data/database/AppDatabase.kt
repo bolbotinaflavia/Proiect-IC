@@ -16,9 +16,9 @@ import com.example.homemanagement.data.database.room.RoomDao
 import com.example.homemanagement.data.database.shoppingItem.ShoppingItem
 import com.example.homemanagement.data.database.shoppingItem.ShoppingItemDao
 
-
-@Database(entities = [Camera::class,Component::class,Element::class,ShoppingItem::class,Task::class], version = 12, exportSchema = false)
+@Database(entities = [Camera::class,Component::class,Element::class,ShoppingItem::class,Task::class], version = 11, exportSchema = false)
 @TypeConverters(Converters::class, DateConverter::class)
+
 abstract class AppDatabase : RoomDatabase() {
     abstract fun roomDao():RoomDao
     abstract fun componentDao():ComponentDao

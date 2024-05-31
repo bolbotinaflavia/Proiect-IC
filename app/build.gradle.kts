@@ -68,6 +68,9 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
 
+    implementation("androidx.core:core-splashscreen:1.0.0")
+    implementation ("com.airbnb.android:lottie:5.0.3")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

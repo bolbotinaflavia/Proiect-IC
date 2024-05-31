@@ -22,7 +22,7 @@
             android:id="@+id/elementNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter component name" />
+            android:hint="Enter element name" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
                 android:id="@+id/cancelButton_element"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="200dp"
+                android:layout_marginLeft="180dp"
                 android:text="Cancel"
                 app:backgroundTint="#AC1E1E" />
 
