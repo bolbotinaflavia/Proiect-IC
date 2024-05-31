@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,7 +14,10 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/fragment_start"
         android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         >
 
         <!-- New Task Button -->
@@ -24,15 +28,6 @@
             android:layout_margin="16dp"
             android:src="@drawable/edit"
             android:contentDescription="New task" />
-
-        <!-- Filter Button -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/Filter_tasks"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:src="@drawable/filter"
-            android:contentDescription="Filter tasks" />
 
     </LinearLayout>
 
@@ -45,6 +40,8 @@
         android:padding="8dp"
         android:clipToPadding="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:background="@android:color/white" />
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_start"
+        android:background="?android:attr/colorBackground"/>
 
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

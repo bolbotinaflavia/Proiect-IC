@@ -30,10 +30,7 @@ import java.util.Locale
 class TaskCreateFragment : Fragment() {
     private lateinit var submitButton: Button
     private lateinit var taskNameEditText: EditText
-    //private lateinit var taskDateEditText:String = ""
-    //private lateinit var taskDescriptionEditText: EditText
     private lateinit var listener: TaskCreationListener // Add listener
-    //private var selectedDeadline: String = ""
     private lateinit var deadlineEditText: EditText
 
     override fun onCreateView(
@@ -45,8 +42,6 @@ class TaskCreateFragment : Fragment() {
 
         submitButton = view.findViewById(R.id.btnCreate)
         taskNameEditText = view.findViewById(R.id.etTaskName)
-        //taskDateEditText = view.findViewById(R.id.taskDateEditText)
-        //taskDescriptionEditText = view.findViewById(R.id.etDescription)
 
         deadlineEditText = view.findViewById(R.id.etDeadline)
 
@@ -57,9 +52,6 @@ class TaskCreateFragment : Fragment() {
         submitButton.setOnClickListener {
             val taskName = taskNameEditText.text.toString()
             val taskDate = getSelectedDate()
-            //val taskDate = taskDateEditText.text.toString()
-            //val taskDate = deadlineEditText.text.toString()
-            //val taskDescription = taskDescriptionEditText.text.toString()
             listener.onTaskCreated(taskName,taskDate) // Notify listener
         }
         val cancelButton: Button = view.findViewById(R.id.btnCancel)

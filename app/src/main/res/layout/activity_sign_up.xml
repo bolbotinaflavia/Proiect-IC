@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".SignUpActivity">
+    tools:context=".SignUpActivity"
+    android:background="?android:attr/colorBackground">
 
     <EditText
         android:layout_width="0dp"
@@ -15,16 +16,12 @@
         android:hint="@string/username"
         android:padding="12dp"
         android:inputType="textEmailAddress"
-        android:background="@drawable/edittxet_border"
+        android:background="@drawable/lighter_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/signupPassword"
-        android:layout_marginTop="272dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-
+        android:layout_marginTop="400dp"
         android:autofillHints="" />
 
     <EditText
@@ -34,17 +31,15 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         android:padding="12dp"
-        android:background="@drawable/edittxet_border"
+        android:background="@drawable/lighter_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signupUsername"
         app:layout_constraintBottom_toTopOf="@+id/signupButton"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        app:layout_constraintHorizontal_bias="0.0"
         android:autofillHints="" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signupButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -52,9 +47,11 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/signup"
+        android:background="@drawable/about_menu_button_gradient"
         app:layout_constraintBottom_toTopOf="@+id/loginRedirect"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintTop_toBottomOf="@id/signupPassword" />
 
     <TextView
@@ -64,7 +61,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="@string/already_registered_login"
-        android:textColor="@color/green"
+        android:textColor="@color/deep_blue"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

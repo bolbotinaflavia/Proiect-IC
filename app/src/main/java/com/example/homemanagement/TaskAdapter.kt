@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.example.homemanagement.data.database.AppDatabase
+import com.example.homemanagement.data.database.shoppingItem.ShoppingItem
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
@@ -25,19 +26,27 @@ class TaskAdapter(
     private var categorizedTasks: Map<String, List<Task>>,
     private val onItemClick: (position: Int) -> Unit,
     private val lifecycleScope: LifecycleCoroutineScope,
-    private val db: AppDatabase
+    private val db: AppDatabase,
+    //private val onDeleteClickListener: OnDeleteClickListener,
+    //private var tasks: List<Task>,
+    //private val deleteTask: suspend (Task) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val VIEW_TYPE_CATEGORY = 0
         private const val VIEW_TYPE_TASK = 1
     }
+    //override fun getItemId(position: Int): Long = tasks[position].id.toLong()
 
     inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.taskTextView)
         val btnTaskShow: LinearLayout = itemView.findViewById(R.id.btn_task_show)
         val checkBox: CheckBox = itemView.findViewById(R.id.taskCheckBox)
         val dateTextView: TextView = itemView.findViewById(R.id.dateTextView)
+        //nameTextView.text = items[position].name
+        //deleteButton.setOnClickListener {
+          //  onDeleteClickListener.onDeleteClick(items[position])
+        //}
     }
 
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -73,55 +82,6 @@ class TaskAdapter(
         }
     }
 
-    /*@RequiresApi(Build.VERSION_CODES.O)
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder) {
-            is CategoryViewHolder -> {
-                val category = getCategoryNameByPosition(position)
-                holder.categoryTextView.text = category
-            }
-            is TaskViewHolder -> {
-                val (category, tasks) = getCategoryAndPosition(position)
-                val taskPosition = position - getCategoryStartPosition(category) - 1
-                if (taskPosition < 0 || taskPosition >= tasks.size) {
-                    throw IndexOutOfBoundsException("Task position $taskPosition is out of bounds for category $category with size ${tasks.size}")
-                }
-                val task = tasks[taskPosition]
-                holder.nameTextView.text = task.name
-                holder.checkBox.isChecked = task.isChecked
-                val dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-                holder.dateTextView.text = dateFormatter.format(task.date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
-
-                holder.checkBox.setOnCheckedChangeListener { _, isChecked ->
-                    if (isChecked) {
-                        AlertDialog.Builder(context)
-                            .setTitle("Finished task?")
-                            .setMessage("Are you sure you want to mark this task as finished?")
-                            .setPositiveButton("Yes") { _, _ ->
-                                lifecycleScope.launch {
-                                    withContext(Dispatchers.IO) {
-                                        db.taskDao().deleteTask(task)
-                                    }
-                                    withContext(Dispatchers.Main) {
-                                        val newTasks = tasks.toMutableList()
-                                        newTasks.remove(task)
-                                        updateCategorizedTasks(categorizeTasks(newTasks))
-                                    }
-                                }
-                            }
-                            .setNegativeButton("No") { _, _ ->
-                                holder.checkBox.isChecked = false
-                            }
-                            .show()
-                    }
-                }
-
-                holder.btnTaskShow.setOnClickListener {
-                    onItemClick(position)
-                }
-            }
-        }
-    }*/
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
@@ -155,9 +115,6 @@ class TaskAdapter(
                                         db.taskDao().deleteTask(task)
                                     }
                                     withContext(Dispatchers.Main) {
-                                        //val newTasks = tasks.toMutableList()
-                                        //newTasks.remove(task)
-                                    //updateCategorizedTasks(categorizeTasks(newTasks))
                                         val updatedTasksForCategory = categorizedTasks[category]?.toMutableList() ?: mutableListOf()
                                         updatedTasksForCategory.remove(task)
                                         val updatedMap = categorizedTasks.toMutableMap()
@@ -212,31 +169,14 @@ class TaskAdapter(
         return categorizedTasks.size + categorizedTasks.values.sumOf { it.size }
     }
 
-    /*fun updateCategorizedTasks(newCategorizedTasks: Map<String, List<Task>>) {
-        //categorizedTasks = newCategorizedTasks
-        val updatedMap = categorizedTasks.toMutableMap()
-        for ((category, tasks) in newCategorizedTasks) {
-            updatedMap[category] = tasks.toMutableList()
-        }
-        categorizedTasks = updatedMap
-        notifyDataSetChanged()
-    }*/
     fun updateCategorizedTasks(newCategorizedTasks: Map<String, List<Task>>) {
         val updatedMap = mutableMapOf<String, List<Task>>()
 
-        // Iterate through each category in the newCategorizedTasks map
         for ((category, tasks) in newCategorizedTasks) {
-            // Create a copy of the tasks for the current category
             val updatedTasksForCategory = categorizedTasks[category]?.toMutableList() ?: mutableListOf()
-
-            // Update the tasks for the current category by removing the deleted task
             updatedTasksForCategory.removeAll(tasks.filter { it !in tasks })
-
-            // Add the updated tasks for the current category to the updated map
             updatedMap[category] = updatedTasksForCategory
         }
-
-        // Update categorizedTasks with the updated map
         categorizedTasks = updatedMap
         notifyDataSetChanged()
     }
@@ -245,6 +185,9 @@ class TaskAdapter(
     fun getItem(position: Int): Task {
         val (category, tasks) = getCategoryAndPosition(position)
         return tasks[position - getCategoryStartPosition(category)]
+    }
+    interface OnDeleteClickListener {
+        fun onDeleteClick(task: Task)
     }
 
     private fun getCategoryNameByPosition(position: Int): String {
