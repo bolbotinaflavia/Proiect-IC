@@ -1,5 +1,5 @@
 # Proiect-IC
 ## Home management mobile app
-* Java
+* Kotlin
 * AndroidStudio
 * SQLite
