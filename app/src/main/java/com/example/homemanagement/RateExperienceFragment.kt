@@ -7,18 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 
-class RateExperienceFragment : Fragment() {
+class RateExperienceFragment(aboutFragment: AboutFragment) : Fragment() {
 
+    private lateinit var view: View
     private lateinit var stars: List<ImageView>
     private lateinit var backButton: View
+
+    private var parentFrag = aboutFragment
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_rate_experience, container, false)
+        view = inflater.inflate(R.layout.fragment_rate_experience, container, false)
         stars = listOf(
             view.findViewById(R.id.star1),
             view.findViewById(R.id.star2),
@@ -27,7 +29,6 @@ class RateExperienceFragment : Fragment() {
             view.findViewById(R.id.star5)
         )
         backButton = view.findViewById(R.id.backButton)
-        showAllButtons()
 
         for (i in stars.indices) {
             stars[i].setOnClickListener {
@@ -35,7 +36,6 @@ class RateExperienceFragment : Fragment() {
             }
         }
         backButton.setOnClickListener{
-            hideAllButtons()
             returnToAboutPage()
         }
         return view
@@ -48,22 +48,8 @@ class RateExperienceFragment : Fragment() {
     }
 
     private fun returnToAboutPage() {
-        childFragmentManager.commit {
-            replace(R.id.rate_page, AboutFragment())
-        }
-    }
-
-    private fun hideAllButtons() {
-        for (i in stars.indices) {
-            stars[i].visibility = View.GONE;
-        }
-        backButton.visibility = View.GONE;
-    }
-
-    private fun showAllButtons() {
-        for (i in stars.indices) {
-            stars[i].visibility = View.VISIBLE;
-        }
-        backButton.visibility = View.VISIBLE;
+        backButton.visibility = View.GONE
+        parentFrag.showAllButtons()
+        parentFragmentManager.popBackStack()
     }
 }

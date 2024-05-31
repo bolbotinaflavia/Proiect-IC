@@ -1,59 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rate_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp"
     android:background="?android:attr/colorBackground">
 
+    <!-- Centered stars and text -->
     <LinearLayout
-        android:id="@+id/ratingBar"
+        android:id="@+id/center_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerInParent="true">
 
-        <ImageView
-            android:id="@+id/star1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/star_border" />
+        <!-- Center the stars horizontally -->
+        <LinearLayout
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
 
-        <ImageView
-            android:id="@+id/star2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/star_border" />
+            <ImageView
+                android:id="@+id/star1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/star_border" />
 
-        <ImageView
-            android:id="@+id/star3"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/star_border" />
+            <ImageView
+                android:id="@+id/star2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/star_border" />
 
-        <ImageView
-            android:id="@+id/star4"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/star_border" />
+            <ImageView
+                android:id="@+id/star3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/star_border" />
 
-        <ImageView
-            android:id="@+id/star5"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/star_border" />
+            <ImageView
+                android:id="@+id/star4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/star_border" />
+
+            <ImageView
+                android:id="@+id/star5"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/star_border" />
+        </LinearLayout>
+
+        <!-- Add a TextView for the message -->
+        <TextView
+            android:id="@+id/feedbackText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Your opinion matters to us. How do you find our app? If you have any thoughts or encountered any issues, let us know!"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:gravity="center"/>
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
 
+    <!-- Back button in the lower left corner -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/about_menu_button_gradient"
         android:text="Back"
-        android:layout_gravity="start"/>
-</LinearLayout>
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="16dp"/>
+</RelativeLayout>

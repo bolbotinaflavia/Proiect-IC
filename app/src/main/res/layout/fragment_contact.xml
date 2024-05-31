@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/about_menu_button_gradient"
         android:text="Back"
+        android:textColor="@color/white"
         android:layout_gravity="start"/>
 
 

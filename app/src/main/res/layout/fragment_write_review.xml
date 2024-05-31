@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/about_menu_button_gradient"
         android:text="Submit"
+        android:textColor="@color/white"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp" />
 
@@ -35,5 +36,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/about_menu_button_gradient"
         android:text="Back"
+        android:textColor="@color/white"
         android:layout_gravity="start"/>
 </LinearLayout>

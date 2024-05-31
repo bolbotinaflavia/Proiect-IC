@@ -85,6 +85,6 @@
     <string name="hello_username">Hello, %1$s!</string>
     <string name="username_profile">Username</string>
     <string name="user_example_com">user@example.com</string>
-    <string name="email">Email</string>
+    <string name="email">Email:</string>
     <string name="log_out">Log Out</string>
 </resources>
