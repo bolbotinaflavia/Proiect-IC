@@ -26,27 +26,18 @@ class TaskAdapter(
     private var categorizedTasks: Map<String, List<Task>>,
     private val onItemClick: (position: Int) -> Unit,
     private val lifecycleScope: LifecycleCoroutineScope,
-    private val db: AppDatabase,
-    //private val onDeleteClickListener: OnDeleteClickListener,
-    //private var tasks: List<Task>,
-    //private val deleteTask: suspend (Task) -> Unit
+    private val db: AppDatabase
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val VIEW_TYPE_CATEGORY = 0
         private const val VIEW_TYPE_TASK = 1
     }
-    //override fun getItemId(position: Int): Long = tasks[position].id.toLong()
-
     inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.taskTextView)
         val btnTaskShow: LinearLayout = itemView.findViewById(R.id.btn_task_show)
         val checkBox: CheckBox = itemView.findViewById(R.id.taskCheckBox)
         val dateTextView: TextView = itemView.findViewById(R.id.dateTextView)
-        //nameTextView.text = items[position].name
-        //deleteButton.setOnClickListener {
-          //  onDeleteClickListener.onDeleteClick(items[position])
-        //}
     }
 
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -112,6 +103,7 @@ class TaskAdapter(
                             .setPositiveButton("Yes") { _, _ ->
                                 lifecycleScope.launch {
                                     withContext(Dispatchers.IO) {
+                                        task.isChecked = true
                                         db.taskDao().deleteTask(task)
                                     }
                                     withContext(Dispatchers.Main) {
@@ -120,6 +112,7 @@ class TaskAdapter(
                                         val updatedMap = categorizedTasks.toMutableMap()
                                         updatedMap[category] = updatedTasksForCategory
                                         updateCategorizedTasks(updatedMap)
+                                        notifyDataSetChanged()
                                     }
                                 }
                             }
@@ -170,14 +163,7 @@ class TaskAdapter(
     }
 
     fun updateCategorizedTasks(newCategorizedTasks: Map<String, List<Task>>) {
-        val updatedMap = mutableMapOf<String, List<Task>>()
-
-        for ((category, tasks) in newCategorizedTasks) {
-            val updatedTasksForCategory = categorizedTasks[category]?.toMutableList() ?: mutableListOf()
-            updatedTasksForCategory.removeAll(tasks.filter { it !in tasks })
-            updatedMap[category] = updatedTasksForCategory
-        }
-        categorizedTasks = updatedMap
+        categorizedTasks = newCategorizedTasks
         notifyDataSetChanged()
     }
 
@@ -185,9 +171,6 @@ class TaskAdapter(
     fun getItem(position: Int): Task {
         val (category, tasks) = getCategoryAndPosition(position)
         return tasks[position - getCategoryStartPosition(category)]
-    }
-    interface OnDeleteClickListener {
-        fun onDeleteClick(task: Task)
     }
 
     private fun getCategoryNameByPosition(position: Int): String {

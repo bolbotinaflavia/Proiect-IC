@@ -28,12 +28,6 @@ class TasksFragment : Fragment(), TaskCreateFragment.TaskCreationListener{
     private lateinit var taskRecyclerView: RecyclerView
     private var isChecked: Boolean ?= null
     private var categorizedTasks: Map<String, List<Task>> = mutableMapOf()
-    //private var categorizedTasks: Map<String, List<Task>> = mutableMapOf()
-
-
-
-    //val taskAdapter: TaskAdapter
-      //  get() = _taskAdapter!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,34 +59,6 @@ class TasksFragment : Fragment(), TaskCreateFragment.TaskCreationListener{
             taskRecyclerView.adapter = taskAdapter
         }
     }
-
-    /*override fun onDeleteClick(task: Task) {
-        AlertDialog.Builder(requireContext())
-            .setTitle("Delete Task")
-            .setMessage("Are you sure you want to delete this task?")
-            .setPositiveButton("Yes") { dialog, _ ->
-                lifecycleScope.launch {
-                    deleteTaskFromDatabase(task)
-                }
-                dialog.dismiss()
-            }
-            .setNegativeButton("No") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .show()
-    }*/
-
-    /*private suspend fun deleteTaskFromDatabase(task: Task) {
-        withContext(Dispatchers.IO) {
-            db.taskDao().deleteTask(task)
-        }
-        val updatedTasks = loadTasksFromDatabase() // Load updated tasks from the database
-        val updatedCategorizedTasks = categorizeTasks(updatedTasks)
-       // val updatedCategorizedTasks = loadTasksFromDatabase();
-        taskAdapter.updateCategorizedTasks(updatedCategorizedTasks)
-        //loadTasksFromDatabase()
-        Toast.makeText(requireContext(), "Task deleted successfully", Toast.LENGTH_SHORT).show()
-    }*/
 
     private fun categorizeTasks(tasks: List<Task>): Map<String, List<Task>> {
         val todayTasks = mutableListOf<Task>()
@@ -159,9 +125,6 @@ class TasksFragment : Fragment(), TaskCreateFragment.TaskCreationListener{
         lifecycleScope.launch {
             saveTaskToDatabase(name,data)
             loadTasksFromDatabase()
-            //val tasks = loadTasksFromDatabase()
-            //val updatedCategorizedTasks = categorizeTasks(tasks)
-            //taskAdapter.updateCategorizedTasks(updatedCategorizedTasks)
         }
     }
     override fun onTaskCancel(){
