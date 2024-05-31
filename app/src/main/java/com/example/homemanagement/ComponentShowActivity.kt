@@ -26,6 +26,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import com.example.homemanagement.data.database.shoppingItem.ShoppingItem
+import com.example.homemanagement.data.database.shoppingItem.ShoppingItemDao
+import com.example.homemanagement.ShoppingItemCreateFragment
 
 class ComponentShowActivity: AppCompatActivity(), ComponentEditFragment.ComponentEditListener,ElementCreateFragment.ElementCreationListener,ElementEditFragment.ElementEditListener {
     private lateinit var toolbar: Toolbar
@@ -33,6 +36,7 @@ class ComponentShowActivity: AppCompatActivity(), ComponentEditFragment.Componen
     private var componentId:Int=-1
     private var userId:Int?=null
     private lateinit var component: Component
+    private lateinit var s:ShoppingItem
     private lateinit var elementAdapter: ElementAdapter
     private val elements = mutableListOf<Element>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,7 +76,11 @@ class ComponentShowActivity: AppCompatActivity(), ComponentEditFragment.Componen
             elementAdapter = ElementAdapter(
                 elements,
                 onEditClick = { element -> showEditElementForm(element) },
-                onAddToShopListClick = { element -> addToShopList(element) }
+                onAddToShopListClick = { element ->
+                    lifecycleScope.launch {
+                        addToShopList(element)
+                    }
+                }
             )
             recyclerView.adapter = elementAdapter
 
@@ -87,8 +95,11 @@ class ComponentShowActivity: AppCompatActivity(), ComponentEditFragment.Componen
     }
 
 
-    private fun addToShopList(element: Element) {
-        // Handle adding element to shopping list
+    private suspend fun addToShopList(element: Element) {
+        val shoppingItem = ShoppingItem(name = element.name)
+        withContext(Dispatchers.IO) {
+            db.shoppingItemDao().insertShoppingItem(shoppingItem)
+        }
     }
 
 

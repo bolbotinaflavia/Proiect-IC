@@ -12,7 +12,6 @@ class ElementAdapter(
     private val elements: List<Element>,
     private val onEditClick: (Element) -> Unit,
     private val onAddToShopListClick: (Element) -> Unit
-
 ) : RecyclerView.Adapter<ElementAdapter.ElementViewHolder>() {
 
     class ElementViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -23,6 +22,7 @@ class ElementAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ElementViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.element_item, parent, false)
+
         return ElementViewHolder(view)
     }
 
