@@ -1,5 +1,5 @@
 # Proiect-IC
 ## Home management mobile app
-* Java/Phyton
+* Java
 * AndroidStudio
-* MongoDB
+* SQLite
